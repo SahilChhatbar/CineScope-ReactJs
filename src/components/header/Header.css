@@ -1,9 +1,9 @@
 .header {
     margin: 0 2.5rem;
-    padding: .5rem 0;
+    padding: 0.rem 0;
     align-items: center;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .headerLeft, .headerRight {
@@ -24,10 +24,15 @@ a > span:hover {
 }
 
 .header__icon {
-    width: 80px;
+    width: 105px;
     cursor: pointer;
+    margin-bottom: -9px;
 }
 
 .user__avatar {
     font-size: 2rem;
+}
+.headd{
+    font-size: 27.5px;
+    
 }

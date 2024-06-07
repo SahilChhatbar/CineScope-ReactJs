@@ -19,15 +19,19 @@ const MovieList = () => {
     };
 
     return (
-        <div className="movie__list">
-            <h2 className="list__title">{(type ? type : "POPULAR").toUpperCase()}</h2>
-            <div className="list__cards">
-                {movieList.map(movie => (
-                    <Cards key={movie.id} movie={movie} />
-                ))}
+        <div className="movie__list__container">
+            <div className="overlay"></div>
+            <div className="movie__list">
+                <h2 className="list__title">{(type ? type : "POPULAR").toUpperCase()}</h2>
+                <div className="list__cards">
+                    {movieList.map(movie => (
+                        <Cards key={movie.id} movie={movie} />
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
 
 export default MovieList;
+

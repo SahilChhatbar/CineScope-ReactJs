@@ -87,7 +87,7 @@ const Movie = () => {
             <div className="movie__heading">Production companies</div>
             <div className="movie__production">
                 {currentMovieDetail?.production_companies?.map(company => (
-                    company.logo_path && (
+                    company.logo_path ? (
                         <span key={company.id} className="productionCompanyImage">
                             <img 
                                 className="movie__productionCompany" 
@@ -96,7 +96,7 @@ const Movie = () => {
                             />
                             <span>{company.name}</span>
                         </span>
-                    )
+                    ) : null
                 ))}
             </div>
         </div>
@@ -104,3 +104,4 @@ const Movie = () => {
 };
 
 export default Movie;
+
