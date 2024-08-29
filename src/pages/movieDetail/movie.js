@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./movie.css";
 import { useParams } from "react-router-dom";
+import { BiSlideshow } from "react-icons/bi";
 
 const Movie = () => {
     const [currentMovieDetail, setMovie] = useState(null);
     const { id } = useParams();
-
     useEffect(() => {
         getData();
         window.scrollTo(0, 0);
@@ -59,6 +59,7 @@ const Movie = () => {
                     </div>
                     <div className="movie__detailRightBottom">
                         <div className="synopsisText">Synopsis</div>
+                        
                         <div>{currentMovieDetail?.overview || ""}</div>
                     </div>
                 </div>
