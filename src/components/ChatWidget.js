@@ -125,7 +125,7 @@ IMDB Rating: ${movie.imdbRating}`;
             drama: ['drama', 'emotional', 'serious', 'intense', 'powerful'],
             horror: ['horror', 'scary', 'creepy', 'fear', 'spooky'],
             romance: ['romance', 'love', 'romantic', 'heartfelt', 'relationship'],
-            'sci-fi': ['sci-fi', 'science fiction', 'futuristic', 'space', 'alien']
+            'sci-fi': ['sci-fi', 'science fiction', 'futuristic', 'space']
         };
     
         for (const word of words) {
