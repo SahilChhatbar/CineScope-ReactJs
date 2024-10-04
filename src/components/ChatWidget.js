@@ -28,28 +28,31 @@ const ChatWidget = () => {
     }, [messages]);
 
     const getMovieDetails = async (query) => {
-        const OMDB_API_KEY = '63daf7aa';
-        const url = `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${encodeURIComponent(query)}`;
+        const TMDB_API_KEY = '4e44d9029b1270a757cddc766a1bcb63';
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`;
 
         try {
             const response = await fetch(url);
-            const movie = await response.json();
+            const movieData = await response.json();
 
-            if (movie.Response === 'True') {
+            // Check if there are results
+            if (movieData.results && movieData.results.length > 0) {
+                const movie = movieData.results[0]; // Get the first movie result
+
+                // Map genre IDs to genre names
+                const genreNames = movie.genre_ids.map(id => genreMapping[id] || 'Unknown').join(', ');
+
                 return `
-Title: ${movie.Title}
 
-Year: ${movie.Year}
+Title: ${movie.title}
 
-Genre: ${movie.Genre}
+Year: ${new Date(movie.release_date).getFullYear()}
 
-Director: ${movie.Director}
+Genre: ${genreNames}
 
-Actors: ${movie.Actors}
+Overview: ${movie.overview}
 
-Plot: ${movie.Plot}
-
-IMDB Rating: ${movie.imdbRating}`;
+Rating: ${movie.vote_average} / 10`;
             } else {
                 return 'Sorry, I could not find any information about that movie.';
             }
@@ -57,7 +60,25 @@ IMDB Rating: ${movie.imdbRating}`;
             return 'There was an error retrieving movie details. Please try again later.';
         }
     };
-
+    const genreMapping = {
+        28: 'Action',
+        12: 'Adventure',
+        16: 'Animation',
+        35: 'Comedy',
+        80: 'Crime',
+        99: 'Documentary',
+        18: 'Drama',
+        14: 'Fantasy',
+        27: 'Horror',
+        10402: 'Music',
+        9648: 'Mystery',
+        10749: 'Romance',
+        878: 'Science Fiction',
+        10770: 'TV Movie',
+        53: 'Thriller',
+        10752: 'War',
+        37: 'Western',
+    };    
     const recommendMoviesByGenre = (genre) => {
         const recommendations = {
             action: ["The Dark Knight", "Inception", "Die Hard", "Mad Max: Fury Road"],
